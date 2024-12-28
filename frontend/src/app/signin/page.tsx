@@ -1,13 +1,16 @@
-"use client"
+"use client";
 
 import { useState } from "react";
+import Button from "@/components/common/buttons/button";
+import Inputfield from "@/components/formfields/inputfield";
 
+type Props = {};
 
-export default function Signin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignIn = (props: Props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log(`Email: ${email}\nPassword: ${password}`);
   };
@@ -27,38 +30,35 @@ export default function Signin() {
           <h2 className="text-2xl font-bold mb-6 text-gray-800">Sign In</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input
+              <Inputfield
                 type="email"
                 id="email"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                required
+                required="true"
+                isLabel={true}
+                labelText="Email"
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-              <input
+              <Inputfield
                 type="password"
                 id="password"
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                required
+                required="true"
+                isLabel={true}
+                labelText="Password"
               />
             </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-            >
-              Sign In
-            </button>
+            <Button type="submit" btnText="Sign In" />
           </form>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default SignIn;

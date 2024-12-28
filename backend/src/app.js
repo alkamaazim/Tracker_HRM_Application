@@ -1,14 +1,11 @@
 require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
-const mongoConnection = require('./connections/connection'); // Import the correct function
-
-
-// connect to mongodb database  using mongoose
-mongoConnection()
-
+const connectDB = require('./config/dbconfig'); // Import the correct function
 
 const app = express();
+// connect to mongodb database  using mongoose
+connectDB()
 
 app.use(cors({
   origin: 'http://localhost:3000', // Allow requests from your frontend
