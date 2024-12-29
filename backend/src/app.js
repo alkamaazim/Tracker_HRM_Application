@@ -1,30 +1,33 @@
-require('dotenv').config()
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/dbconfig'); // Import the correct function
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./config/dbconfig"); // Import the correct function
+const userRoutes = require("./routes/userRoutes");
+
+// variables contain environment values
+const PORT = process.env.PORT;
 
 const app = express();
 // connect to mongodb database  using mongoose
-connectDB()
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Allow requests from your frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
-  credentials: true // If using cookies or authentication
-}));
+app.use(express.json());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Allow requests from your frontend
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific methods
+    credentials: true, // If using cookies or authentication
+  })
+);
 
 app.use(cors());
 
+// API Routes
+app.use("/api/v1", userRoutes );
 
-app.use(express.json())
-
-// routs
-
-app.get('/', (req, res) => {
-    res.send('Welcome to the Auth API');
+// connectDB method call
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running ${PORT}`);
+  });
 });
-
-// creat port
-app.listen(process.env.PORT,() =>{
-    console.log(`Server running on port ${process.env.PORT} app.js`);
-})
