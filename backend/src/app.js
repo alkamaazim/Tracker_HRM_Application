@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/dbconfig"); // Import the correct function
 const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+
 
 // variables contain environment values
 const PORT = process.env.PORT;
@@ -24,6 +26,8 @@ app.use(cors());
 
 // API Routes
 app.use("/api/v1", userRoutes );
+app.use("/api/v1", authRoutes );
+
 
 // connectDB method call
 connectDB().then(() => {

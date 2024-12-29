@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 // @desc Get all users
 // @route GET /api/v1/users
@@ -50,16 +51,23 @@ exports.createUser = async (req, res) => {
     if (!firstName || !password || !role) {
       return res.status(400).json({
         success: false,
-        message: "First name, password, and role are required.",
+        message: "First name, Email, password, and role are required.",
       });
     }
+    if (password.length < 8) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 8 characters long" });
+    }
+
+    const hashPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
       firstName,
       middleName,
       lastName,
       email,
-      password,
+      password : hashPassword,
       role,
       employeeId,
       otherId,
