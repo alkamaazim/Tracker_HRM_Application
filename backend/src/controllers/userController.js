@@ -1,7 +1,26 @@
 const User = require("../models/User");
 
+// @desc Get all users
+// @route GET /api/v1/users
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.find(); // Retrieve all users
+    res.status(200).json({
+      success: true,
+      message: "Users retrieved successfully!",
+      users,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error fetching users",
+      error: error.message,
+    });
+  }
+};
+
 // @desc Create a new user
-// @route POST /api/users
+// @route POST /api/v1/create-user
 exports.createUser = async (req, res) => {
   try {
     const {
