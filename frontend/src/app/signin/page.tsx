@@ -12,7 +12,6 @@ const SignIn = (props: Props) => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(`Email: ${email}\nPassword: ${password}`);
   };
 
   return (
