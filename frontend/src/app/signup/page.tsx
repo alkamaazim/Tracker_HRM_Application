@@ -3,7 +3,7 @@ import { useState } from "react";
 import { countries } from "./countryList";
 import Inputfield from "@/components/formfields/inputfield";
 import DropdownField from "@/components/formfields/dropDownFields";
-import {CountryDropdownField} from "@/components/formfields/countryDropDownField";
+import { CountryDropdownField } from "@/components/formfields/countryDropDownField";
 
 const CreateUser = () => {
   const [uan, setUan] = useState("");
@@ -52,9 +52,16 @@ const CreateUser = () => {
     setUserDetails((prevDetails) => [...prevDetails, userObj]);
   };
 
+  const handleNationalityChange = (value: string) => {
+    setNationality(value);
+  };
+
   return (
-    <div className="bg-blue-50 h-full flex items-center justify-center" style={{ backgroundColor: "rgb(65, 88, 208)" }}>
-      <div className="w-full h-full max-w-4xl bg-white p-8 rounded-xl shadow-lg" >
+    <div
+      className="bg-blue-50 h-full flex items-center justify-center"
+      style={{ backgroundColor: "rgb(65, 88, 208)" }}
+    >
+      <div className="w-full h-full max-w-4xl bg-white p-8 rounded-xl shadow-lg">
         <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
           Create New User
         </h2>
@@ -181,14 +188,14 @@ const CreateUser = () => {
           <CountryDropdownField
             name="nationality"
             value={nationality}
-            id="nationality"
             isLabel={true}
             labelText="Nationality"
             labelClass="text-gray-500"
             fieldClass="border-gray-300"
-            options={countries} // Pass the full countries list here
-            onChange={(e) => setNationality(e.target.value)} // Handle the selected value
+            options={countries} // Pass the full countries list
+            onChange={handleNationalityChange} // Update nationality on change
           />
+          {/* <p>Selected Nationality: {nationality}</p> */}
           <Inputfield
             type="text"
             name="dateOfBirth"
