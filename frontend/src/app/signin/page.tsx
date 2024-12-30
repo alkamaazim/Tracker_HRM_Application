@@ -16,7 +16,7 @@ const SignIn = (props: Props) => {
 
   return (
     <div className="bg-blue-100 h-screen flex items-center justify-center relative shadow-lg">
-      {/* Background Image */}
+      {/* <--- Background Image ---> */}
       <div className="absolute inset-0 w-[90%] h-[90%] object-cover rounded-xl shadow-lg m-auto bg-gray-100">
         <img
           src="/images/signinPageBg.png"
@@ -24,34 +24,34 @@ const SignIn = (props: Props) => {
           className="w-full h-full object-cover rounded-xl"
         />
 
-        {/* Signin Form */}
+        {/* <--- Signin Form ---> */}
         <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-full max-w-md p-8 shadow-2xl rounded-2xl ml-4 sm:ml-8 md:ml-20">
           <h2 className="text-2xl font-bold mb-6 text-gray-800">Sign In</h2>
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <Inputfield
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required="true"
-                isLabel={true}
-                labelText="Email"
-              />
-            </div>
-            <div className="mb-4">
-              <Inputfield
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required="true"
-                isLabel={true}
-                labelText="Password"
-              />
-            </div>
+            {/* <--- Email Input Field  ---> */}
+            <Inputfield
+              type="text"
+              name="email"
+              value={email}
+              id="email"
+              isLabel={true}
+              labelText="Email*"
+              fieldClass="border-gray-300"
+              onChange={(e) => setEmail(e.target.value)}
+              required={true}
+            />
+            {/* <--- Password Input Field ---> */}
+            <Inputfield
+              type="password"
+              name="password"
+              value={password}
+              id="password"
+              isLabel={true}
+              labelText="Password*"
+              fieldClass="border-gray-300"
+              onChange={(e) => setPassword(e.target.value)}
+              required={true}
+            />
             <Button type="submit" btnText="Sign In" />
           </form>
         </div>

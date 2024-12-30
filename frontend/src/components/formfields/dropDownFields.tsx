@@ -1,8 +1,6 @@
-
 import React from "react";
 
 type Props = {
-  type: string;
   name: string;
   value: string;
   isLabel: boolean;
@@ -11,23 +9,13 @@ type Props = {
   labelText?: string | undefined;
   labelClass?: string | undefined;
   fieldClass?: string | undefined;
-  placeholder?: string | undefined; // Optional placeholder
+  options: { label: string; value: string }[];
   onChange: (param: any) => void;
 };
 
-const Inputfield = (props: Props) => {
+const DropdownField = (props: Props) => {
   return (
     <div className="relative z-0 w-full mb-5 group">
-      <input
-        type={props.type}
-        id={props.id}
-        name={props.name}
-        value={props.value}
-        onChange={(e) => props.onChange(e)}
-        className={`peer block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 ${props.fieldClass}`}
-        placeholder=" " // Use a single space for floating label support
-        required={props.required}
-      />
       {props.isLabel && props.labelText && (
         <label
           htmlFor={props.id}
@@ -36,8 +24,25 @@ const Inputfield = (props: Props) => {
           {props.labelText}
         </label>
       )}
+      <select
+        id={props.id}
+        name={props.name}
+        value={props.value}
+        onChange={(e) => props.onChange(e)}
+        className={`peer block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 ${props.fieldClass}`}
+        required={props.required}
+      >
+        <option value="" disabled>
+          Select
+        </option>
+        {props.options.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
 
-export default Inputfield;
+export default DropdownField;
