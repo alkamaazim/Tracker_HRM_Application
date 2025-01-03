@@ -1,3 +1,4 @@
+
 import React from "react";
 
 type Props = {
@@ -6,34 +7,36 @@ type Props = {
   value: string;
   isLabel: boolean;
   id?: string | undefined;
-  required?: string | undefined;
+  required?: boolean | undefined;
   labelText?: string | undefined;
   labelClass?: string | undefined;
   fieldClass?: string | undefined;
+  placeholder?: string | undefined; // Optional placeholder
   onChange: (param: any) => void;
 };
 
 const Inputfield = (props: Props) => {
   return (
-    <>
-      {props.isLabel && (
-        <label
-          htmlFor="password"
-          className={`${props.labelClass} block text-sm font-medium text-gray-700 mb-1`}
-        >
-          {props.labelText}
-        </label>
-      )}
+    <div className="relative z-0 w-full mb-5 group">
       <input
         type={props.type}
         id={props.id}
         name={props.name}
         value={props.value}
         onChange={(e) => props.onChange(e)}
-        className={`${props.fieldClass} w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500`}
-        required
+        className={`peer feald ${props.fieldClass}`}
+        placeholder=" " // Use a single space for floating label support
+        required={props.required}
       />
-    </>
+      {props.isLabel && props.labelText && (
+        <label
+          htmlFor={props.id}
+          className={`lable ${props.labelClass}`}
+        >
+          {props.labelText}
+        </label>
+      )}
+    </div>
   );
 };
 
