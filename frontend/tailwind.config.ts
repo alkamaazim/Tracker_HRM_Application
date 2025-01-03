@@ -11,6 +11,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+      }, rotate: {
+        'x-6': '6deg',
+        'y-6': '6deg',
       },
     },
   },

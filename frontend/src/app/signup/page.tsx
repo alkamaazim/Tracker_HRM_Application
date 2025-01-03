@@ -60,7 +60,7 @@ const CreateUser = () => {
   return (
     <>
       <DefaultCard>
-        <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
+        <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center mt-3">
           Create New User
         </h2>
         <form className=" m-8 " onSubmit={handleSubmit}>
